@@ -1,35 +1,32 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "./App.css";
-import axios from 'axios';
 import Header from './components/Header'
-import Navbar from './components/Navbar'
+import SearchBar from './components/SearchBar'
 import Footer from './components/Footer'
+import styled from 'styled-components'
 
-
+const ContentWrapper = styled.div`
+max-width:1200px;
+margin:auto;
+padding: 20px 0;
+`
+const BackgroundImg = styled.div`
+background-image: url('https://img.wallpapersafari.com/desktop/1920/1080/23/18/2tJ4sg.jpg');
+background-color: #cccccc;
+`
 
 function App() {
 
-  const [nasaData,setNasaData]=useState();
-
-  useEffect(() => {
-    axios.get(`https://api.nasa.gov/planetary/apod?api_key=aXa5j4l7ciBzvWHr4inz69Ip4uAgOiUTZhbHwaZe`)
-    .then(res => {
-      setNasaData(res.data)
-    })
-    
-  },[]);
-  
-  console.log(nasaData)
   
 
   return (
-    <div className="App">
-      <p>
-        <Header nasaData={nasaData}/>
-        <Navbar nasaData={nasaData}/>
-        <Footer nasaData={nasaData}/>
-      </p>
-    </div>
+    <BackgroundImg>
+      <ContentWrapper>
+          <Header />
+          <SearchBar />
+          <Footer />
+      </ContentWrapper>
+    </BackgroundImg>
   );
 }
 
